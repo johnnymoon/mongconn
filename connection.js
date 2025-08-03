@@ -21,9 +21,26 @@ async function run() {
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+            await listDatabases(client);
+
+
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
 run().catch(console.dir);
+
+
+
+/**
+ * Print the names of all available databases
+ * @param {MongoClient} client A MongoClient that is connected to a cluster
+ */
+async function listDatabases(client) {
+    databasesList = await client.db().admin().listDatabases();
+
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+};
