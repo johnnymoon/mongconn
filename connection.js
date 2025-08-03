@@ -27,7 +27,7 @@ async function run() {
 
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    await client.close();  //Render doesnt seem to like this. Says application exited early.. Also it seems to want a port assigned. Issues linked1
 
   //
   }
